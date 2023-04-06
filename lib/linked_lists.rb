@@ -42,6 +42,16 @@ class LinkedList
     nil
   end
 
+  def insert_at(value, index)
+    new_node = Node.new(value)
+    new_node.next_node = at(index)
+    if index.zero?
+      @head = new_node
+    else
+      at(index - 1).next_node = new_node
+    end
+  end
+
   def pop
     return nil if head.nil?
 
@@ -61,6 +71,16 @@ class LinkedList
 
     new_node.next_node = @head
     @head = new_node
+  end
+
+  def remove_at(index)
+    if index.zero?
+      return @head = nil if head.next_node.nil?
+
+      return @head = head.next_node
+    end
+
+    at(index - 1).next_node = at(index).next_node
   end
 
   def size
